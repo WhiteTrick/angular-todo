@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MessageService } from './message.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-poc';
+  title = 'Todos';
+
+  constructor(
+    private snackbar: MatSnackBar,
+    public messageService: MessageService
+  ) {
+    this.messageService.message$.subscribe(message => {
+      this.snackbar.open(message, 'Close');
+    });
+  }
 }

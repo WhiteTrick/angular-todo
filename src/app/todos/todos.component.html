@@ -1,0 +1,8 @@
+<!-- listing todos in mat-grid-list or mat-list messed up sizes could not get a fix -->
+<div class="center">
+    <br/>
+    <app-create-todo *ngIf="!isFetching" [getTodos]="getTodos"></app-create-todo>    
+    <mat-progress-bar *ngIf="isFetching" mode="query"></mat-progress-bar>
+    <app-todo *ngFor="let todo of todos | reverse" [getTodos]="getTodos" [todo]="todo"></app-todo>
+    <h3 *ngIf="!(todos.length || isFetching)">Nothing to do.</h3>
+</div>

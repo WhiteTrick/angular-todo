@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Todo #{{data.id}}</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <input matInput placholder="I would like to..." [(ngModel)]="data.name">
+    </mat-form-field><br/>
+    <mat-form-field>
+        <textarea matInput placholder="Description..." [(ngModel)]="data.description"></textarea>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

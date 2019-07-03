@@ -1,0 +1,7 @@
+<mat-form-field>
+    <input matInput placeholder="I would like to..." [(ngModel)]="todo">
+</mat-form-field>
+<button mat-button color="accent" [disabled]="!todo" (click)="submit()">
+    <mat-spinner *ngIf="loading" diameter="25" color="accent"></mat-spinner>
+    <span *ngIf="!loading">+</span>
+</button>

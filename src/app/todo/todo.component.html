@@ -1,0 +1,44 @@
+<mat-card *ngIf="todo" color="primary">
+    <mat-card-title-group>
+        <mat-card-title>
+            <span [class.strike]="todo.complete">
+                {{todo.name | uppercase}}
+            </span>
+        </mat-card-title>
+        <mat-card-subtitle>
+            created: {{todo.createdAt | date: 'yyyy.MM.dd HH:mm:ss'}}
+            <div *ngIf='todo.completedAt'>
+                completed: {{todo.completedAt | date: 'yyyy.MM.dd HH:mm:ss'}}
+            </div>
+        </mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content *ngIf='todo.description'>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Description</mat-panel-title>
+            </mat-expansion-panel-header>
+            {{todo.description}}
+        </mat-expansion-panel>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button color="accent" (click)="toggleComplete()" [disabled]="disableAction('toggleComplete')">
+            <mat-spinner *ngIf="isFetching.toggleComplete" diameter="25" color="accent"></mat-spinner>
+            <span *ngIf="!isFetching.toggleComplete">
+                Mark as
+                {{todo.complete ? 'Incomplete' : 'Complete'}}
+            </span>
+        </button>
+        <button mat-button color="accent" (click)="openDialog()" [disabled]="disableAction('edit')">
+            <mat-spinner *ngIf="isFetching.edit" diameter="25" color="accent"></mat-spinner>
+            <span *ngIf="!isFetching.edit">
+                Edit
+            </span>
+        </button>
+        <button mat-button color="warn" (click)="delete()" [disabled]="disableAction('delete')">
+            <mat-spinner *ngIf="isFetching.delete" diameter="25" color="warn"></mat-spinner>
+            <span *ngIf="!isFetching.delete">
+                Delete
+            </span>
+        </button>
+    </mat-card-actions>
+</mat-card><br />
